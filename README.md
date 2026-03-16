@@ -2,6 +2,9 @@
 
 **Version 版本**: 1.2.0
 
+### 新功能 (1.2.0)
+- 超過 100 字元自動提示用戶查看檔案
+
 [English](#english) | [繁體中文](#繁體中文)
 
 ---
@@ -12,9 +15,8 @@
 
 Download YouTube videos and transcribe audio using local Whisper. Best for videos without subtitles.
 
-### Features
-
-- Download YouTube video audio
+### New Feature (1.2.0)
+- If text > 100 characters, prompt user to view attachment
 - **Smart subtitle detection**: Extract if available, otherwise use Whisper
 - Local Whisper transcription (no API needed)
 - Default: Traditional Chinese output
