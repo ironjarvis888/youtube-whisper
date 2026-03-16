@@ -17,6 +17,28 @@ Download YouTube videos and transcribe audio using local Whisper. Best for video
 - Default: Traditional Chinese output
 - Multiple Whisper models support
 
+### Hardware Requirements
+
+| Item | Minimum | Recommended |
+|------|---------|-------------|
+| RAM | 4 GB | 8 GB+ |
+| Storage | 1 GB | 5 GB+ |
+| CPU | Any | Apple Silicon M series |
+| GPU | None | Yes (faster transcription) |
+
+**Note**: Transcription is resource-intensive. Faster hardware = faster transcription.
+
+### Test Environment
+
+| Item | Specification |
+|------|---------------|
+| Host | Mac mini M4 |
+| RAM | 16 GB |
+| Model | Whisper small |
+| Video Duration | 5:55 |
+| Transcription Time | ~3-5 minutes |
+| Output | Traditional Chinese text |
+
 ### Requirements
 
 ```bash
@@ -71,6 +93,28 @@ Kuanlin
 - 本地 Whisper 轉錄 (無需 API)
 - 預設：繁體中文輸出
 - 支援多種 Whisper 模型
+
+### 硬體需求
+
+| 項目 | 最低需求 | 建議需求 |
+|------|----------|----------|
+| 記憶體 | 4 GB | 8 GB+ |
+| 儲存空間 | 1 GB | 5 GB+ |
+| CPU | 任意 | Apple Silicon M 系列 |
+| GPU | 無 | 有 (加速轉錄) |
+
+**注意**：轉錄是非常耗費資源的任務，硬體越強速度越快。
+
+### 測試環境
+
+| 項目 | 規格 |
+|------|------|
+| 主機 | Mac mini M4 |
+| 記憶體 | 16 GB |
+| 模型 | Whisper small |
+| 影片時長 | 5:55 |
+| 轉錄時間 | 約 3-5 分鐘 |
+| 輸出 | 繁體中文文字檔 |
 
 ### 需求
 

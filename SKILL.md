@@ -7,6 +7,24 @@ description: Download YouTube videos and transcribe audio using local Whisper. U
 
 下載 YouTube 影片並使用本地 Whisper 進行語音轉文字。
 
+## 硬體需求 / Hardware Requirements
+
+| 項目 | 最低需求 | 建議需求 |
+|------|----------|----------|
+| 記憶體 | 4 GB | 8 GB+ |
+| 儲存空間 | 1 GB | 5 GB+ |
+| CPU | 任意 | Apple Silicon M 系列 |
+
+## 測試環境 / Test Environment
+
+| 項目 | 規格 |
+|------|------|
+| 主機 | Mac mini M4 |
+| 記憶體 | 16 GB |
+| 模型 | Whisper small |
+| 影片時長 | 5:55 |
+| 轉錄時間 | 約 3-5 分鐘 |
+
 ## When to Use / 使用時機
 
 - YouTube 影片沒有字幕 / YouTube video has no subtitles
