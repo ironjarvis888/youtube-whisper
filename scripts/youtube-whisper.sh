@@ -1,7 +1,7 @@
 #!/bin/bash
 # =============================================================================
 # YouTube Whisper - 下載 YouTube 影片並轉文字
-# Version: 1.1.0
+# Version: 1.2.0
 # =============================================================================
 # Author: Kuanlin
 # Description: 自動偵測字幕，有字幕則擷取，無字幕則用 Whisper 轉文字
@@ -217,9 +217,19 @@ if [ $HAS_SUBTITLES -eq 0 ]; then
     EXTRACT_OK=$?
     
     if [ $EXTRACT_OK -eq 0 ]; then
-        echo ""
-        echo "✅ 完成！字幕已儲存至 / Done! Saved to: $OUTPUT"
-        cat "$OUTPUT"
+        # 檢查字數 / Check character count
+        CHAR_COUNT=$(wc -c < "$OUTPUT")
+        if [ "$CHAR_COUNT" -gt 100 ]; then
+            echo ""
+            echo "✅ 完成！字幕已儲存至 / Done! Saved to: $OUTPUT"
+            echo "📎 字數過多 (>100)，請查看完整檔案 / Too many characters, see attachment"
+            echo ""
+            echo "===== 檔案路徑 / File path: $OUTPUT ====="
+        else
+            echo ""
+            echo "✅ 完成！字幕已儲存至 / Done! Saved to: $OUTPUT"
+            cat "$OUTPUT"
+        fi
     else
         # 字幕擷取失敗，嘗試 Whisper / Subtitle extraction failed, try Whisper
         echo "⚠️ 字幕擷取失敗，嘗試 Whisper... / Subtitle extraction failed, trying Whisper..."
@@ -244,8 +254,18 @@ else
     transcribe_with_whisper "$URL" "$OUTPUT" "$MODEL"
     
     if [ -f "$OUTPUT" ]; then
-        echo ""
-        echo "✅ 完成！轉錄已儲存至 / Done! Saved to: $OUTPUT"
-        cat "$OUTPUT"
+        # 檢查字數 / Check character count
+        CHAR_COUNT=$(wc -c < "$OUTPUT")
+        if [ "$CHAR_COUNT" -gt 100 ]; then
+            echo ""
+            echo "✅ 完成！轉錄已儲存至 / Done! Saved to: $OUTPUT"
+            echo "📎 字數過多 (>100)，請查看完整檔案 / Too many characters, see attachment"
+            echo ""
+            echo "===== 檔案路徑 / File path: $OUTPUT ====="
+        else
+            echo ""
+            echo "✅ 完成！轉錄已儲存至 / Done! Saved to: $OUTPUT"
+            cat "$OUTPUT"
+        fi
     fi
 fi
