@@ -75,6 +75,16 @@ clawhub install openai-whisper
 | medium | Slow | Better |
 | large | Slowest | Best |
 
+### Video Limits
+
+| Limit | Value |
+|-------|-------|
+| Max Duration | 30 minutes |
+| Max File Size | 1 GB |
+| Auto Check | Yes |
+
+> Note: Will ask if you want to continue when exceeding limits
+
 ### Author
 
 Kuanlin
@@ -151,6 +161,16 @@ clawhub install openai-whisper
 | **small** | 中等 | 良好 |
 | medium | 慢 | 較高 |
 | large | 最慢 | 最高 |
+
+### 影片限制
+
+| 限制 | 值 |
+|------|-----|
+| 最長時長 | 30 分鐘 |
+| 最大檔案 | 1 GB |
+| 自動檢測 | 是 |
+
+> 注意：超過限制會詢問是否繼續
 
 ### 作者
 
