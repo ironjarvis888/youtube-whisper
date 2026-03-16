@@ -3,43 +3,47 @@ name: youtube-whisper
 description: Download YouTube videos and transcribe audio using local Whisper. Use when you need to extract text from YouTube videos that don't have subtitles, or when youtube-watcher fails due to missing captions.
 ---
 
-# YouTube Whisper
+# YouTube Whisper / YouTube Whisper 語音轉文字
 
-Download YouTube videos and transcribe audio using local Whisper.
+下載 YouTube 影片並使用本地 Whisper 進行語音轉文字。
 
-## When to Use
+## When to Use / 使用時機
 
-- YouTube video has no subtitles
-- youtube-watcher fails due to missing captions
-- Need offline transcription
-- High-quality local transcription (better than YouTube auto-captions)
+- YouTube 影片沒有字幕 / YouTube video has no subtitles
+- youtube-watcher 因為沒有字幕而失敗 / youtube-watcher fails due to missing captions
+- 需要離線轉錄 / Need offline transcription
+- 高品質本地轉錄 (比 YouTube 自動字幕更好) / High-quality local transcription
 
-## Usage
+## Usage / 使用方式
 
 ```bash
-# Basic transcription
+# 基本轉錄 / Basic transcription
 youtube-whisper.sh "https://www.youtube.com/watch?v=VIDEO_ID"
 
-# Specify output filename
+# 指定輸出檔案 / Specify output filename
 youtube-whisper.sh "URL" "output.txt"
 
-# Use specific Whisper model (tiny, base, small, medium, large)
-# Default language: Traditional Chinese (zh)
+# 指定模型 / Use specific Whisper model (tiny, base, small, medium, large)
+# 預設語言: 繁體中文 / Default language: Traditional Chinese (zh)
 youtube-whisper.sh "URL" "output.txt" "small"
 ```
 
-## Requirements
+## Requirements / 需求
 
 - yt-dlp: `brew install yt-dlp`
 - Whisper: `pip3 install openai-whisper` or use openai-whisper skill
 - ffmpeg: `brew install ffmpeg`
 
-## Output
+## Output / 輸出
 
-Transcription text file in the same directory.
+轉錄文字檔案 (Transcript text file).
 
-## Notes
+## Notes / 備註
 
-- Videos are downloaded to /tmp and cleaned up after transcription
-- Default model: small (good balance of speed and accuracy)
-- Larger models (medium, large) are slower but more accurate
+- 影片會下載到 /tmp 並在轉錄後刪除 / Videos are downloaded to /tmp and cleaned up after transcription
+- 預設模型: small (速度與準確度的最佳平衡) / Default model: small
+- 較大的模型 (medium, large) 較慢但更準確 / Larger models are slower but more accurate
+
+## Author
+
+Kuanlin
