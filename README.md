@@ -1,9 +1,18 @@
 # YouTube Whisper / YouTube Whisper 語音轉文字
 
-**Version 版本**: 1.2.1
+**Version 版本**: 1.2.2
 
 ### 新功能 (1.2.1)
 - 超過 100 字元自動提示用戶查看檔案
+
+### 使用情境
+
+| 情境 | Agent 怎麼做 |
+|------|-------------|
+| 用戶說「給我文字」 | 直接傳文字給用戶 |
+| 用戶說「給我總結」 | 先轉文字，再自動總結給用戶 |
+
+> 腳本只負責轉文字，是否要總結由 Agent 決定
 
 [English](#english) | [繁體中文](#繁體中文)
 
@@ -17,6 +26,15 @@ Download YouTube videos and transcribe audio using local Whisper. Best for video
 
 ### New Feature (1.2.0)
 - If text > 100 characters, prompt user to view attachment
+
+### Usage Scenarios
+
+| Scenario | What Agent Does |
+|----------|-----------------|
+| User says "give me text" | Send text directly |
+| User says "summarize" | Transcribe first, then summarize |
+
+> Script only handles transcription. Whether to summarize is decided by Agent.
 - **Smart subtitle detection**: Extract if available, otherwise use Whisper
 - Local Whisper transcription (no API needed)
 - Default: Traditional Chinese output
