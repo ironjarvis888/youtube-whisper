@@ -1,9 +1,9 @@
 #!/bin/bash
 # =============================================================================
-# YouTube Whisper - 下載 YouTube 影片並用 Whisper 轉文字
+# YouTube Whisper - 下載 YouTube 影片並轉文字
 # =============================================================================
 # Author: Kuanlin
-# Description: 下載 YouTube 影片並使用本地 Whisper 進行語音轉文字
+# Description: 自動偵測字幕，有字幕則擷取，無字幕則用 Whisper 轉文字
 # Usage: youtube-whisper.sh <url> [output_file] [model]
 # =============================================================================
 
@@ -19,8 +19,8 @@ MIN_RAM_GB=4
 MIN_AVAILABLE_RAM_GB=2
 
 # 影片限制 / Video limits
-MAX_DURATION_MINUTES=30      # 最長 30 分鐘
-MAX_FILESIZE_GB=1           # 最大 1GB
+MAX_DURATION_MINUTES=30
+MAX_FILESIZE_GB=1
 
 # =============================================================================
 # 系統資源檢查函式 / System Resource Check Functions
@@ -29,10 +29,8 @@ MAX_FILESIZE_GB=1           # 最大 1GB
 # 取得可用記憶體 (GB) / Get available RAM in GB
 get_available_ram_gb() {
     if [[ "$OSTYPE" == "darwin"* ]]; then
-        # macOS
-        vm_stat | grep "Pages free:" | awk '{print $3}' | xargs -I {} echo "scale=2; {} * 4096 / 1024 / 1024 / 1024" | bc
+        vm_stat | grep "Pages free:" | awk '{print $3}' | xargs -I {} echo "scale=2; {} * 4096 / 1024 / 1024 / 1024" | bc 2>/dev/null || echo "0"
     else
-        # Linux
         free -g | awk '/^Mem:/ {print $7}'
     fi
 }
@@ -40,10 +38,8 @@ get_available_ram_gb() {
 # 取得系統負載 / Get system load
 get_system_load() {
     if [[ "$OSTYPE" == "darwin"* ]]; then
-        # macOS - 取得 CPU 使用率
-        top -l 1 -n 0 | grep "CPU usage" | awk '{print $3}' | tr -d '%'
+        top -l 1 -n 0 | grep "CPU usage" | awk '{print $3}' | tr -d '%' 2>/dev/null || echo "0"
     else
-        # Linux
         uptime | awk -F'load average:' '{print $2}' | cut -d',' -f1 | xargs
     fi
 }
@@ -54,7 +50,7 @@ check_resources() {
     
     # 取得總記憶體 / Get total RAM
     if [[ "$OSTYPE" == "darwin"* ]]; then
-        TOTAL_RAM=$(sysctl -n hw.memsize | awk '{print $1/1024/1024/1024}')
+        TOTAL_RAM=$(sysctl -n hw.memsize 2>/dev/null | awk '{print $1/1024/1024/1024}' || echo "0")
     else
         TOTAL_RAM=$(free -g | awk '/^Mem:/ {print $2}')
     fi
@@ -70,28 +66,16 @@ check_resources() {
     echo "   可用記憶體 / Available RAM: ${AVAILABLE_RAM} GB"
     echo "   CPU 使用率 / CPU Usage: ${CPU_LOAD}%"
     
-    # 檢查總記憶體是否足夠 / Check if total RAM is sufficient
-    if (( $(echo "$TOTAL_RAM < $MIN_RAM_GB" | bc -l) )); then
-        echo "⚠️ 警告 / Warning: 系統記憶體不足 / System RAM insufficient (需要 / Need: ${MIN_RAM_GB} GB)"
+    # 檢查總記憶體 / Check if total RAM is sufficient
+    if [ -n "$TOTAL_RAM" ] && (( $(echo "$TOTAL_RAM < $MIN_RAM_GB" | bc -l 2>/dev/null || echo "0") )); then
+        echo "⚠️ 警告 / Warning: 系統記憶體不足 / System RAM insufficient"
         return 1
     fi
     
     # 檢查可用記憶體 / Check available RAM
-    if (( $(echo "$AVAILABLE_RAM < $MIN_AVAILABLE_RAM_GB" | bc -l) )); then
-        echo "⚠️ 警告 / Warning: 可用記憶體不足 / Available RAM low (低於 / Below: ${MIN_AVAILABLE_RAM_GB} GB)"
+    if [ -n "$AVAILABLE_RAM" ] && (( $(echo "$AVAILABLE_RAM < $MIN_AVAILABLE_RAM_GB" | bc -l 2>/dev/null || echo "0") )); then
+        echo "⚠️ 警告 / Warning: 可用記憶體不足 / Available RAM low"
         echo "💡 建議關閉其他應用程式後再執行 / Tip: Close other apps before running"
-        read -p "是否繼續執行? / Continue anyway? (y/N): " -n 1 -r
-        echo
-        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-            echo "❌ 已取消執行 / Execution cancelled"
-            exit 0
-        fi
-    fi
-    
-    # 檢查 CPU 負載 / Check CPU load (如果過高則警告 / Warn if too high)
-    if (( $(echo "$CPU_LOAD > 80" | bc -l) )); then
-        echo "⚠️ 警告 / Warning: CPU 使用率高 / High CPU usage (${CPU_LOAD}%)"
-        echo "💡 系統可能會變慢 / System may be slow"
         read -p "是否繼續執行? / Continue anyway? (y/N): " -n 1 -r
         echo
         if [[ ! $REPLY =~ ^[Yy]$ ]]; then
@@ -105,95 +89,90 @@ check_resources() {
 }
 
 # =============================================================================
-# 影片資訊檢查 / Video Info Check
+# 字幕檢查函式 / Subtitle Check Functions
 # =============================================================================
 
-# 取得影片時長 (分鐘) / Get video duration in minutes
-get_video_duration_minutes() {
+# 檢查是否有字幕 / Check if subtitles available
+check_subtitles() {
     local url="$1"
-    yt-dlp --print "%duration%" -s "$url" 2>/dev/null | awk '{print int($1/60)}'
+    echo "🎬 正在檢查字幕... / Checking for subtitles..."
+    
+    # 取得字幕語言列表 / Get subtitle language list
+    SUBTITLE_LANGS=$(yt-dlp --list-subs "$url" 2>/dev/null | grep -v "Has no subtitles" | head -20)
+    
+    if [ -z "$SUBTITLE_LANGS" ]; then
+        echo "📝 結果: 無字幕 / Result: No subtitles"
+        return 1  # No subtitles
+    else
+        echo "📝 結果: 有字幕 / Result: Has subtitles"
+        echo "$SUBTITLE_LANGS"
+        return 0  # Has subtitles
+    fi
 }
 
-# 取得影片檔案大小 (GB) / Get video file size in GB
-get_video_filesize_gb() {
+# 擷取字幕 / Extract subtitles
+extract_subtitles() {
     local url="$1"
-    yt-dlp -f "bestaudio[ext=m4a]" --print "%filesize%" -s "$url" 2>/dev/null | awk '{print $1/1024/1024/1024}'
+    local output="$2"
+    
+    echo "📥 正在擷取字幕... / Extracting subtitles..."
+    
+    # 嘗試擷取字幕 / Try to extract subtitles
+    # 優先使用中文 / Prefer Chinese
+    yt-dlp --write-subs --sub-lang "zh-TW,zh-CN,zh,cht,en" --skip-download --convert-subs "srt" -o "$output" "$url" 2>/dev/null
+    
+    # 嘗試轉換為文字 / Try to convert to text
+    local srt_file="${output%.txt}.srt"
+    
+    if [ -f "$srt_file" ]; then
+        # 簡單的 SRT 到文字轉換 / Simple SRT to text conversion
+        sed -E '/^[0-9]+$/d;/^$/d' "$srt_file" > "$output"
+        echo "✅ 字幕擷取完成 / Subtitle extraction complete"
+        return 0
+    else
+        echo "❌ 字幕擷取失敗 / Subtitle extraction failed"
+        return 1
+    fi
 }
 
-# 檢查影片是否為語音為主 / Check if video is speech-based (not just music)
-check_audio_content() {
-    local audio_file="$1"
-    echo "🎵 正在分析音訊內容... / Analyzing audio content..."
-    
-    # 使用 ffprobe 檢測音訊類型
-    # 檢查音訊軌道的編碼和特性
-    AUDIO_CODEC=$(ffprobe -v error -select_streams a:0 -show_entries stream=codec_name -of csv=p=0 "$audio_file" 2>/dev/null)
-    
-    # 檢查是否有語音 / Check for speech patterns
-    # 如果沒有音頻軌道，回覆沒有語音
-    if [ -z "$AUDIO_CODEC" ]; then
-        echo "⚠️ 警告: 無法偵測音軌 / Warning: No audio track detected"
-        return 2
-    fi
-    
-    echo "   音訊編碼 / Audio codec: $AUDIO_CODEC"
-    
-    # 簡單判斷：如果只有背景音樂可能沒有語音
-    # 這是一個簡單的檢查，更準確的方法需要語音偵測模型
-    echo "💡 提示: 如果影片是純音樂，轉錄結果可能為空 / Tip: If video is pure music, transcript may be empty"
-    
-    return 0
-}
+# =============================================================================
+# Whisper 轉文字函式 / Whisper Transcription Functions
+# =============================================================================
 
-# 檢查影片限制 / Check video limits
-check_video_limits() {
+# 用 Whisper 轉文字 / Transcribe with Whisper
+transcribe_with_whisper() {
     local url="$1"
-    echo "🎬 正在檢查影片... / Checking video..."
+    local output="$2"
+    local model="$3"
     
-    # 取得影片標題 / Get video title
-    VIDEO_TITLE=$(yt-dlp --print "%(title)s" -s "$url" 2>/dev/null | head -1)
-    echo "   標題 / Title: $VIDEO_TITLE"
+    echo "📥 正在下載 YouTube 影片..."
+    TEMP_DIR="/tmp/youtube-whisper-$$"
+    AUDIO_FILE="$TEMP_DIR/audio.m4a"
+    mkdir -p "$TEMP_DIR"
     
-    # 取得時長 / Get duration
-    DURATION_SEC=$(yt-dlp --print "%duration%" -s "$url" 2>/dev/null | head -1)
-    DURATION_MIN=$((DURATION_SEC / 60))
+    # 清理函式 / Cleanup function
+    cleanup() {
+        rm -rf "$TEMP_DIR"
+    }
+    trap cleanup EXIT
     
-    echo "   時長 / Duration: ${DURATION_MIN} 分鐘 / minutes"
+    # 下載音訊 / Download audio
+    yt-dlp -f "bestaudio[ext=m4a]" -o "$AUDIO_FILE" "$url" --quiet 2>/dev/null
     
-    # 檢查時長限制 / Check duration limit
-    if [ "$DURATION_MIN" -gt "$MAX_DURATION_MINUTES" ]; then
-        echo "⚠️ 影片過長 / Video too long: ${DURATION_MIN} 分鐘 (最大 / Max: ${MAX_DURATION_MINUTES} 分鐘)"
-        echo "💡 建議使用分段下載或選擇較短的影片 / Tip: Use shorter videos or download in segments"
-        
-        # 詢問用戶是否繼續 / Ask user if they want to continue
-        read -p "是否繼續執行? (可能需要較長時間) / Continue anyway? (may take long time) (y/N): " -n 1 -r
-        echo
-        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-            echo "❌ 已取消執行 / Execution cancelled"
-            exit 0
-        fi
+    echo "🔄 正在使用 Whisper 轉文字 (模型: $model)..."
+    whisper "$AUDIO_FILE" --model "$model" --language zh --output_dir "$TEMP_DIR" --output_format txt 2>/dev/null
+    
+    # 尋找輸出檔案 / Find output file
+    TRANSCRIPT_FILE=$(ls "$TEMP_DIR"/*.txt 2>/dev/null | head -1)
+    
+    if [ -n "$TRANSCRIPT_FILE" ] && [ -f "$TRANSCRIPT_FILE" ]; then
+        cp "$TRANSCRIPT_FILE" "$output"
+        echo "✅ Whisper 轉錄完成 / Whisper transcription complete"
+        return 0
+    else
+        echo "❌ Whisper 轉錄失敗 / Whisper transcription failed"
+        return 1
     fi
-    
-    # 取得預期檔案大小 (可能不準確) / Get estimated file size (may be inaccurate)
-    ESTIMATED_SIZE=$(yt-dlp -f "bestaudio[ext=m4a]" --print "%(filesize,filesize_approx)s" -s "$url" 2>/dev/null | head -1)
-    
-    if [ -n "$ESTIMATED_SIZE" ] && [ "$ESTIMATED_SIZE" != "NA" ]; then
-        SIZE_GB=$((ESTIMATED_SIZE / 1024 / 1024 / 1024))
-        echo "   預估大小 / Estimated size: ${SIZE_GB} GB"
-        
-        if [ "$SIZE_GB" -gt "$MAX_FILESIZE_GB" ]; then
-            echo "⚠️ 檔案可能過大 / File may be too large: ${SIZE_GB} GB"
-            read -p "是否繼續執行? / Continue anyway? (y/N): " -n 1 -r
-            echo
-            if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-                echo "❌ 已取消執行 / Execution cancelled"
-                exit 0
-            fi
-        fi
-    fi
-    
-    echo "✅ 影片檢查通過 / Video check passed"
-    return 0
 }
 
 # =============================================================================
@@ -205,73 +184,67 @@ if [ -z "$URL" ]; then
     echo "用法 / Usage: youtube-whisper.sh <youtube_url> [output_file] [model]"
     echo "範例 / Example: youtube-whisper.sh 'https://www.youtube.com/watch?v=xxx' transcript.txt small"
     echo ""
-    echo "限制 / Limits:"
-    echo "   最長時長 / Max duration: ${MAX_DURATION_MINUTES} 分鐘 / minutes"
-    echo "   最大檔案 / Max file size: ${MAX_FILESIZE_GB} GB"
+    echo "邏輯 / Logic:"
+    echo "   1. 檢查字幕 / Check subtitles"
+    echo "   2. 有字幕 → 直接擷取 / Has subtitles → Extract"
+    echo "   3. 無字幕 → 用 Whisper / No subtitles → Use Whisper"
     exit 1
 fi
-
-# 檢查系統資源 / Check system resources
-check_resources
-
-# 檢查影片限制 / Check video limits
-check_video_limits "$URL"
 
 # 預設輸出檔名 / Default output filename
 if [ -z "$OUTPUT" ]; then
     OUTPUT="transcript_$(date +%Y%m%d_%H%M%S).txt"
 fi
 
-# 暫存目錄 / Temporary directory
-TEMP_DIR="/tmp/youtube-whisper-$$"
-AUDIO_FILE="$TEMP_DIR/audio.m4a"
+# 取得影片標題 / Get video title
+VIDEO_TITLE=$(yt-dlp --print "%(title)s" -s "$URL" 2>/dev/null | head -1)
+echo "📺 標題 / Title: $VIDEO_TITLE"
 
-mkdir -p "$TEMP_DIR"
+# 檢查系統資源 (Whisper 需要) / Check system resources (needed for Whisper)
+check_resources
+RESOURCES_OK=$?
 
-# 清理函式 / Cleanup function - 執行完畢後刪除暫存檔
-cleanup() {
-    rm -rf "$TEMP_DIR"
-}
-trap cleanup EXIT
+# 檢查字幕 / Check for subtitles
+check_subtitles "$URL"
+HAS_SUBTITLES=$?
 
-# 下載 YouTube 影片 / Download YouTube video
-echo "📥 正在下載 YouTube 影片..."
-yt-dlp -f "bestaudio[ext=m4a]" -o "$AUDIO_FILE" "$URL" --quiet 2>/dev/null
-
-# 檢查音訊內容 / Check audio content
-check_audio_content "$AUDIO_FILE"
-AUDIO_CHECK=$?
-
-if [ $AUDIO_CHECK -eq 2 ]; then
-    echo "⚠️ 無法偵測音軌，無法轉錄 / Cannot detect audio track, cannot transcribe"
-    exit 1
-fi
-
-# 用戶確認 / User confirmation for audio
-if [ $AUDIO_CHECK -ne 0 ]; then
-    read -p "偵測到可能為非語音內容，是否繼續? / Non-speech content detected, continue? (y/N): " -n 1 -r
-    echo
-    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-        echo "❌ 已取消執行 / Execution cancelled"
-        exit 0
+if [ $HAS_SUBTITLES -eq 0 ]; then
+    # 有字幕 - 嘗試擷取 / Has subtitles - try to extract
+    echo ""
+    echo "🎯 使用字幕方式 / Using subtitle method"
+    extract_subtitles "$URL" "$OUTPUT"
+    EXTRACT_OK=$?
+    
+    if [ $EXTRACT_OK -eq 0 ]; then
+        echo ""
+        echo "✅ 完成！字幕已儲存至 / Done! Saved to: $OUTPUT"
+        cat "$OUTPUT"
+    else
+        # 字幕擷取失敗，嘗試 Whisper / Subtitle extraction failed, try Whisper
+        echo "⚠️ 字幕擷取失敗，嘗試 Whisper... / Subtitle extraction failed, trying Whisper..."
+        
+        if [ $RESOURCES_OK -ne 0 ]; then
+            echo "❌ 系統資源不足，無法使用 Whisper / Insufficient resources for Whisper"
+            exit 1
+        fi
+        
+        transcribe_with_whisper "$URL" "$OUTPUT" "$MODEL"
     fi
-fi
-
-# 使用 Whisper 轉文字 / Transcribe with Whisper
-# 預設語言: 繁體中文 (zh)
-echo "🔄 正在使用 Whisper 轉文字 (模型: $MODEL)..."
-whisper "$AUDIO_FILE" --model "$MODEL" --language zh --output_dir "$TEMP_DIR" --output_format txt 2>/dev/null
-
-# 尋找輸出檔案 / Find output file
-TRANSCRIPT_FILE=$(ls "$TEMP_DIR"/*.txt 2>/dev/null | head -1)
-
-# 複製結果 / Copy result
-if [ -n "$TRANSCRIPT_FILE" ] && [ -f "$TRANSCRIPT_FILE" ]; then
-    cp "$TRANSCRIPT_FILE" "$OUTPUT"
-    echo "✅ 完成！轉錄文字已儲存至 / Done! Transcript saved to: $OUTPUT"
-    cat "$OUTPUT"
 else
-    echo "❌ 錯誤：轉錄失敗 / Error: Transcription failed"
-    echo "💡 可能是純音樂影片，沒有語音內容 / Possible cause: pure music video, no speech content"
-    exit 1
+    # 無字幕 - 使用 Whisper / No subtitles - use Whisper
+    echo ""
+    echo "🎯 無字幕，使用 Whisper 轉文字 / No subtitles, using Whisper"
+    
+    if [ $RESOURCES_OK -ne 0 ]; then
+        echo "❌ 系統資源不足，無法使用 Whisper / Insufficient resources for Whisper"
+        exit 1
+    fi
+    
+    transcribe_with_whisper "$URL" "$OUTPUT" "$MODEL"
+    
+    if [ -f "$OUTPUT" ]; then
+        echo ""
+        echo "✅ 完成！轉錄已儲存至 / Done! Saved to: $OUTPUT"
+        cat "$OUTPUT"
+    fi
 fi

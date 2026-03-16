@@ -13,9 +13,16 @@ Download YouTube videos and transcribe audio using local Whisper. Best for video
 ### Features
 
 - Download YouTube video audio
+- **Smart subtitle detection**: Extract if available, otherwise use Whisper
 - Local Whisper transcription (no API needed)
 - Default: Traditional Chinese output
 - Multiple Whisper models support
+
+### Smart Logic
+
+1. **Check for subtitles** first
+2. **Has subtitles** → Extract directly (fast!)
+3. **No subtitles** → Use Whisper (slower but works)
 
 ### Hardware Requirements
 
@@ -100,9 +107,16 @@ Kuanlin
 ### 功能
 
 - 下載 YouTube 影片音訊
+- **智慧偵測字幕**：有字幕直接擷取，無字幕才用 Whisper
 - 本地 Whisper 轉錄 (無需 API)
 - 預設：繁體中文輸出
 - 支援多種 Whisper 模型
+
+### 智慧邏輯
+
+1. **先檢查字幕**
+2. **有字幕** → 直接擷取 (快!)
+3. **無字幕** → 用 Whisper (慢但可行)
 
 ### 硬體需求
 
