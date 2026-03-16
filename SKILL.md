@@ -1,6 +1,7 @@
 ---
 name: youtube-whisper
 description: Download YouTube videos and transcribe audio using local Whisper. Use when you need to extract text from YouTube videos that don't have subtitles, or when youtube-watcher fails due to missing captions.
+version: 1.1.0
 ---
 
 # YouTube Whisper / YouTube Whisper 語音轉文字

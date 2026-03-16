@@ -1,5 +1,7 @@
 # YouTube Whisper / YouTube Whisper 語音轉文字
 
+**Version 版本**: 1.1.0
+
 [English](#english) | [繁體中文](#繁體中文)
 
 ---
