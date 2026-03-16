@@ -1,8 +1,8 @@
 # YouTube Whisper / YouTube Whisper 語音轉文字
 
-**Version 版本**: 1.2.0
+**Version 版本**: 1.2.1
 
-### 新功能 (1.2.0)
+### 新功能 (1.2.1)
 - 超過 100 字元自動提示用戶查看檔案
 
 [English](#english) | [繁體中文](#繁體中文)
