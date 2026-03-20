@@ -130,7 +130,7 @@ class PreferencesManager: ObservableObject {
         ]
     }
     
-    func import(from data: [String: Any]) {
+    func loadFrom(data: [String: Any]) {
         if let color = data[Keys.characterColor] as? String { characterColor = color }
         if let size = data[Keys.characterSize] as? String { characterSize = size }
         if let style = data[Keys.animationStyle] as? String { animationStyle = style }

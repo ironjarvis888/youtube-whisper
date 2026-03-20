@@ -1,0 +1,425 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		018DA1FA8BA44A0B4F82E9A7 /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A6E51D5706F8BC7493D5CC /* ToolbarView.swift */; };
+		0289CFCE7110EB22BA0C57DC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3289716C387ECBE63FD2B77 /* ContentView.swift */; };
+		08C2E59715B7A8C3A5FA524B /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F836DB7B23083C31304A3504 /* WindowController.swift */; };
+		1D476E901363660E2C9B3BCF /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363A89DE1B8DC259CBD8548C /* NotificationManager.swift */; };
+		31D1384A59AEEB193F89D0FC /* PetOnlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5331B60D4DF6CC4474EC9A1E /* PetOnlyView.swift */; };
+		489553821D89E93C68CFDE72 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F85074E2290B53889BEA4E /* Logger.swift */; };
+		5B104D8C1D4966AB34E366C1 /* LobsterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6830D44A7CAB6DBB2FBB4BB /* LobsterState.swift */; };
+		5B731D2552AD706B74D1A9C6 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6024CD03B5A5F21AAA26AF1C /* Assets.swift */; };
+		60279647C6F40DA6796C6569 /* OpenClawGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C211E6C84048A8136543210 /* OpenClawGateway.swift */; };
+		7D8BC090F62DE8DFD1439299 /* PreviewContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFC14FE67655D313115051D /* PreviewContent.swift */; };
+		A60704861DB3F3BA1F93471E /* LobsterCharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B02C8CD90695EA8330AF837 /* LobsterCharacterView.swift */; };
+		AD8983EEDA088FE496F4948D /* ChatBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A4E974B1948DFF62DA4271 /* ChatBubbleView.swift */; };
+		AF26559DE43A673281D65A1D /* MenuBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71764CB0CFF1CCA27BEF70F2 /* MenuBarController.swift */; };
+		BCCE162EC1EB8AEF62DA1285 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560DC2579D19FC31A9E9A61C /* AppInfo.swift */; };
+		C489A7A98B919DB18553546F /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D69C55CEBEDF2271EB17D9 /* Models.swift */; };
+		D1D1098413BDC4453167987E /* CatCharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5E14D585013E6BEF07E2FC /* CatCharacterView.swift */; };
+		DB6447A93671273619FAC5FB /* OpenClawPetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573C3C19CF8BE7FF86E3A0BC /* OpenClawPetApp.swift */; };
+		DF5C9476AA15CFDBC271FF45 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2284E645254BF405AEDA78E1 /* SettingsView.swift */; };
+		E47A9BE7F2CD2015EB0B6567 /* LobsterCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20C773A046B0387C2D6B222 /* LobsterCharacter.swift */; };
+		EDAEBFE5563352ADCAF48116 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3B4D8557633E57D8BC80E4 /* UserSettings.swift */; };
+		F8A703E7FF59EE77A58D768B /* DogCharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0821994CA0AACA03F48F45 /* DogCharacterView.swift */; };
+		FDD0897E93027FD30728E318 /* PreferencesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856E71172165F50D85865E15 /* PreferencesManager.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		082A1D755035B31688CB3DC5 /* OpenClawPet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OpenClawPet.entitlements; sourceTree = "<group>"; };
+		0B02C8CD90695EA8330AF837 /* LobsterCharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobsterCharacterView.swift; sourceTree = "<group>"; };
+		2284E645254BF405AEDA78E1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		22D69C55CEBEDF2271EB17D9 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		28F85074E2290B53889BEA4E /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		2C211E6C84048A8136543210 /* OpenClawGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenClawGateway.swift; sourceTree = "<group>"; };
+		363A89DE1B8DC259CBD8548C /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		3C0821994CA0AACA03F48F45 /* DogCharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogCharacterView.swift; sourceTree = "<group>"; };
+		5331B60D4DF6CC4474EC9A1E /* PetOnlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetOnlyView.swift; sourceTree = "<group>"; };
+		560DC2579D19FC31A9E9A61C /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
+		573C3C19CF8BE7FF86E3A0BC /* OpenClawPetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenClawPetApp.swift; sourceTree = "<group>"; };
+		6024CD03B5A5F21AAA26AF1C /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		71764CB0CFF1CCA27BEF70F2 /* MenuBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarController.swift; sourceTree = "<group>"; };
+		7C5E14D585013E6BEF07E2FC /* CatCharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatCharacterView.swift; sourceTree = "<group>"; };
+		856E71172165F50D85865E15 /* PreferencesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesManager.swift; sourceTree = "<group>"; };
+		8C84635B3D4C318316784854 /* OpenClawPet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenClawPet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A20C773A046B0387C2D6B222 /* LobsterCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobsterCharacter.swift; sourceTree = "<group>"; };
+		B5A6E51D5706F8BC7493D5CC /* ToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarView.swift; sourceTree = "<group>"; };
+		C959B16C1685D40015FF60F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CAFC14FE67655D313115051D /* PreviewContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewContent.swift; sourceTree = "<group>"; };
+		D5A4E974B1948DFF62DA4271 /* ChatBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbleView.swift; sourceTree = "<group>"; };
+		E3289716C387ECBE63FD2B77 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E6830D44A7CAB6DBB2FBB4BB /* LobsterState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobsterState.swift; sourceTree = "<group>"; };
+		EA3B4D8557633E57D8BC80E4 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		F836DB7B23083C31304A3504 /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		02108AEC2DBD176AD13E889C = {
+			isa = PBXGroup;
+			children = (
+				CD8C4AAF75334EA9407854F6 /* Sources */,
+				428FB5580168CF3E2540C242 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		06FAF1FCC206FC9EC19379BF /* App */ = {
+			isa = PBXGroup;
+			children = (
+				71764CB0CFF1CCA27BEF70F2 /* MenuBarController.swift */,
+				573C3C19CF8BE7FF86E3A0BC /* OpenClawPetApp.swift */,
+				F836DB7B23083C31304A3504 /* WindowController.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		22F8C4A6A6332860CD534093 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				560DC2579D19FC31A9E9A61C /* AppInfo.swift */,
+				6024CD03B5A5F21AAA26AF1C /* Assets.swift */,
+				28F85074E2290B53889BEA4E /* Logger.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		428FB5580168CF3E2540C242 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8C84635B3D4C318316784854 /* OpenClawPet.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		768FAA64A00B16EB3837683E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7C5E14D585013E6BEF07E2FC /* CatCharacterView.swift */,
+				D5A4E974B1948DFF62DA4271 /* ChatBubbleView.swift */,
+				E3289716C387ECBE63FD2B77 /* ContentView.swift */,
+				3C0821994CA0AACA03F48F45 /* DogCharacterView.swift */,
+				0B02C8CD90695EA8330AF837 /* LobsterCharacterView.swift */,
+				5331B60D4DF6CC4474EC9A1E /* PetOnlyView.swift */,
+				CAFC14FE67655D313115051D /* PreviewContent.swift */,
+				2284E645254BF405AEDA78E1 /* SettingsView.swift */,
+				B5A6E51D5706F8BC7493D5CC /* ToolbarView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CD8C4AAF75334EA9407854F6 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				C959B16C1685D40015FF60F6 /* Info.plist */,
+				082A1D755035B31688CB3DC5 /* OpenClawPet.entitlements */,
+				06FAF1FCC206FC9EC19379BF /* App */,
+				E84A1B0635664C70FA9BF2DA /* Models */,
+				22F8C4A6A6332860CD534093 /* Resources */,
+				E5D606504DF113C65F4CFD41 /* Services */,
+				768FAA64A00B16EB3837683E /* Views */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		E5D606504DF113C65F4CFD41 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				363A89DE1B8DC259CBD8548C /* NotificationManager.swift */,
+				2C211E6C84048A8136543210 /* OpenClawGateway.swift */,
+				856E71172165F50D85865E15 /* PreferencesManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		E84A1B0635664C70FA9BF2DA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A20C773A046B0387C2D6B222 /* LobsterCharacter.swift */,
+				E6830D44A7CAB6DBB2FBB4BB /* LobsterState.swift */,
+				22D69C55CEBEDF2271EB17D9 /* Models.swift */,
+				EA3B4D8557633E57D8BC80E4 /* UserSettings.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		341E9EF32F9A3470C090E071 /* OpenClawPet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 25A2A6BD33CD56BD7CD2CAD0 /* Build configuration list for PBXNativeTarget "OpenClawPet" */;
+			buildPhases = (
+				083AFB33BA0161EF507EB3A9 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OpenClawPet;
+			packageProductDependencies = (
+			);
+			productName = OpenClawPet;
+			productReference = 8C84635B3D4C318316784854 /* OpenClawPet.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E4198731AACCD66A27EFFAD2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					341E9EF32F9A3470C090E071 = {
+						ProvisioningStyle = Manual;
+					};
+				};
+			};
+			buildConfigurationList = 8529AD09A7F43F000A793AC1 /* Build configuration list for PBXProject "OpenClawPet" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 02108AEC2DBD176AD13E889C;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 428FB5580168CF3E2540C242 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				341E9EF32F9A3470C090E071 /* OpenClawPet */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		083AFB33BA0161EF507EB3A9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCCE162EC1EB8AEF62DA1285 /* AppInfo.swift in Sources */,
+				5B731D2552AD706B74D1A9C6 /* Assets.swift in Sources */,
+				D1D1098413BDC4453167987E /* CatCharacterView.swift in Sources */,
+				AD8983EEDA088FE496F4948D /* ChatBubbleView.swift in Sources */,
+				0289CFCE7110EB22BA0C57DC /* ContentView.swift in Sources */,
+				F8A703E7FF59EE77A58D768B /* DogCharacterView.swift in Sources */,
+				E47A9BE7F2CD2015EB0B6567 /* LobsterCharacter.swift in Sources */,
+				A60704861DB3F3BA1F93471E /* LobsterCharacterView.swift in Sources */,
+				5B104D8C1D4966AB34E366C1 /* LobsterState.swift in Sources */,
+				489553821D89E93C68CFDE72 /* Logger.swift in Sources */,
+				AF26559DE43A673281D65A1D /* MenuBarController.swift in Sources */,
+				C489A7A98B919DB18553546F /* Models.swift in Sources */,
+				1D476E901363660E2C9B3BCF /* NotificationManager.swift in Sources */,
+				60279647C6F40DA6796C6569 /* OpenClawGateway.swift in Sources */,
+				DB6447A93671273619FAC5FB /* OpenClawPetApp.swift in Sources */,
+				31D1384A59AEEB193F89D0FC /* PetOnlyView.swift in Sources */,
+				FDD0897E93027FD30728E318 /* PreferencesManager.swift in Sources */,
+				7D8BC090F62DE8DFD1439299 /* PreviewContent.swift in Sources */,
+				DF5C9476AA15CFDBC271FF45 /* SettingsView.swift in Sources */,
+				018DA1FA8BA44A0B4F82E9A7 /* ToolbarView.swift in Sources */,
+				EDAEBFE5563352ADCAF48116 /* UserSettings.swift in Sources */,
+				08C2E59715B7A8C3A5FA524B /* WindowController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		2DC583B98575522429D39D27 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Sources/OpenClawPet.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Sources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.openclaw.pet;
+				PRODUCT_NAME = "OpenClaw Pet";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		6104AAB6BB848A48FB59A0FD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		ADE468A79DD3FB5D0DB3D157 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Sources/OpenClawPet.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Sources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.openclaw.pet;
+				PRODUCT_NAME = "OpenClaw Pet";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		E953B0BFA405048EB90E3670 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		25A2A6BD33CD56BD7CD2CAD0 /* Build configuration list for PBXNativeTarget "OpenClawPet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2DC583B98575522429D39D27 /* Debug */,
+				ADE468A79DD3FB5D0DB3D157 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8529AD09A7F43F000A793AC1 /* Build configuration list for PBXProject "OpenClawPet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6104AAB6BB848A48FB59A0FD /* Debug */,
+				E953B0BFA405048EB90E3670 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E4198731AACCD66A27EFFAD2 /* Project object */;
+}

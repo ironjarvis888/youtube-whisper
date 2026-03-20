@@ -13,6 +13,7 @@ class UserSettings: ObservableObject {
     static let shared = UserSettings()
     
     // MARK: - Character Settings
+    @Published var petType: PetType = .lobster
     @Published var characterColor: CharacterColor = .classicRed
     @Published var characterSize: CharacterSize = .medium
     @Published var animationStyle: AnimationStyle = .energetic

@@ -120,3 +120,20 @@ enum EyeState {
     case surprised
     case sleeping
 }
+
+// MARK: - Pet Type
+enum PetType: String, CaseIterable, Identifiable {
+    case lobster = "龍蝦"
+    case dog = "小狗"
+    case cat = "小貓"
+    
+    var id: String { rawValue }
+    
+    var emoji: String {
+        switch self {
+        case .lobster: return "🦞"
+        case .dog: return "🐕"
+        case .cat: return "🐱"
+        }
+    }
+}

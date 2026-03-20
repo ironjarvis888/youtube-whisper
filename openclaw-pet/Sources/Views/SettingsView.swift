@@ -46,8 +46,18 @@ struct AppearanceSettingsView: View {
     
     var body: some View {
         Form {
-            Section("角色") {
-                Picker("角色", selection: $settings.characterColor) {
+            Section("寵物") {
+                Picker("寵物類型", selection: $settings.petType) {
+                    ForEach(PetType.allCases) { pet in
+                        HStack {
+                            Text(pet.emoji)
+                            Text(pet.rawValue)
+                        }
+                    }
+                }
+                .pickerStyle(.segmented)
+                
+                Picker("顏色", selection: $settings.characterColor) {
                     ForEach(CharacterColor.allCases) { color in
                         HStack {
                             Circle()
@@ -61,18 +71,6 @@ struct AppearanceSettingsView: View {
                 Picker("尺寸", selection: $settings.characterSize) {
                     ForEach(CharacterSize.allCases) { size in
                         Text(size.rawValue)
-                    }
-                }
-                
-                Picker("動作風格", selection: $settings.animationStyle) {
-                    ForEach(AnimationStyle.allCases) { style in
-                        Text(style.rawValue)
-                    }
-                }
-                
-                Picker("配件", selection: $settings.currentAccessory) {
-                    ForEach(Accessory.allCases) { accessory in
-                        Text(accessory.rawValue)
                     }
                 }
             }
